@@ -27,7 +27,7 @@ var config = {
 	httpsPrivateKey: "", 	// HTTPS private key path, only require when useHttps is true
 	httpsCertificate: "", 	// HTTPS Certificate path, only require when useHttps is true
 
-	language: "en",
+	language: "kr",
 	logLevel: ["INFO", "LOG", "WARN", "ERROR"], // Add "DEBUG" for even more logging
 	timeFormat: 24,
 	units: "metric",
@@ -69,8 +69,8 @@ var config = {
 			module: "currentweather",
 			position: "top_right",
 			config: {
-				location: "New York",
-				locationID: "5128581", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
+				location: "Suwon",
+				locationID: "1835553", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
 				appid: "YOUR_OPENWEATHER_API_KEY"
 			}
 		},
@@ -79,8 +79,8 @@ var config = {
 			position: "top_right",
 			header: "Weather Forecast",
 			config: {
-				location: "New York",
-				locationID: "5128581", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
+				location: "Suwon",
+				locationID: "1835553", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
 				appid: "YOUR_OPENWEATHER_API_KEY"
 			}
 		},
@@ -98,6 +98,57 @@ var config = {
 				showPublishDate: true,
 				broadcastNewsFeeds: true,
 				broadcastNewsUpdates: true
+			}
+		},
+		{
+			module: "youtube",
+			position: "center",
+			config: {
+				verbose:true,
+				defaultQuality: "default",
+				width: "800px",
+				height: "600px",
+				volume: 100,
+				disableCC: true,
+				showPlayingOnly: true,
+				defaultLoop: false,
+				defaultShuffle: false,
+				defaultAutoplay: true,
+				// onStartPlay : null,
+				onStartPlay: {
+					type: "id",
+					id: "",
+					shuffle: true,
+					loop: false,
+					autoplay: true,
+				  },
+				playerVars: {
+				//   controls: 1,
+				//   hl: "",
+				//   enablejsapi: 1,
+				//   showinfo: 0,
+				//   rel: 0,
+				//   cc_load_policy: 0,
+				  q:"playlist 슬픈",
+                part:"snippet",
+            	key: "YOUR_YOUTUBE_API_KEY",
+        	    type:"video",
+                maxResults:10,
+                regionCode:"KR",
+				},
+				telegramBotCommand: {
+				  YOUTUBE_LOAD_BY_URL: "yt",
+				  YOUTUBE_LOAD_PLAYLIST: "yl",
+				  YOUTUBE_CONTROL: "yc"
+				},
+				outNotifications: {
+				  "-1": "UNSTARTED",
+				  "0": "ENDED",
+				  "1": "PLAYING",
+				  "2": "PAUSED",
+				  "3": "BUFFERING",
+				  "5": "VIDEO CUED",
+				}
 			}
 		},
 	]
